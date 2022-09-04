@@ -1,0 +1,13 @@
+# Python
+__pycache__/
+.mypy_cache/
+
+# Typescript
+node_modules/
+ts_build/
+
+# MacOS
+.DS_Store
+
+# Text
+*.txt
