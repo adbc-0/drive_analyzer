@@ -1,0 +1,2 @@
+AMOUNT_READ_LIMIT = 50
+ROOT = '/Users'
