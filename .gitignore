@@ -1,13 +1,17 @@
+# C#
+/c_sharp/src/bin
+/c_sharp/src/obj
+
 # Python
 __pycache__/
 .mypy_cache/
 
 # Typescript
-node_modules/
-ts_build/
+/ts/node_modules/
+/ts/ts_build/
 
 # MacOS
 .DS_Store
 
-# Text
-*.txt
+# Text file
+*.pseudocode

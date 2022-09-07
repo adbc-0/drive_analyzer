@@ -1,4 +1,4 @@
-from reader import FSReader
+from file_reader import create_dir_tree
 
 if __name__ == '__main__':
-  FSReader().create_fs_tree()
+    create_dir_tree()
