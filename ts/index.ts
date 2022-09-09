@@ -1,4 +1,3 @@
-import { FSReader } from './FS/Reader.js';
+import { createDirTree } from './fileSystem/reader.js';
 
-const reader = new FSReader();
-await reader.createFSTree();
+await createDirTree();
