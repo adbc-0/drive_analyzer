@@ -48,12 +48,3 @@ export class FSReader {
     return rootNode;
   };
 };
-
-// import { spawn } from 'child_process';
-// function getDirSize(path: string) {
-  // const size = spawn('du', ['-sh', '-k', path, ' | cut -f1']);
-  // size.stdout.on('data', (data) => {
-    // const buf = Buffer.from(data);
-    // console.log(buf.toString());
-  // });
-// }
