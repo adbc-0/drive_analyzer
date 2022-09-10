@@ -1,4 +1,4 @@
-import fs from 'node:fs/promises';
+import { readdir, lstat } from 'fs/promises';
 
 import { ROOT } from '../constants/index.js';
 import { Stack } from '../utils/Stack.js';
@@ -14,17 +14,12 @@ export async function createDirTree(): Promise<TreeNode> {
 
   while(!fileStack.isEmpty()) {
     const currentNode = fileStack.pop();
-    const scannedFile = await fs.lstat(currentNode.getAbsPath());
 
-    if (!scannedFile.isDirectory) {
-      continue;
-    }
-
-    const fileNameList = await fs.readdir(currentNode.getAbsPath());
+    const fileNameList = await readdir(currentNode.getAbsPath());
 
     for (const fileName of fileNameList) {
       const fileAbsPath = `${currentNode.getAbsPath()}/${fileName}`;
-      const scannedFile = await fs.lstat(fileAbsPath);
+      const scannedFile = await lstat(fileAbsPath);
 
       if (scannedFile.isSymbolicLink()) {
         continue;

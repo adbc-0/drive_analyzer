@@ -14,9 +14,6 @@ def create_dir_tree() -> TreeNode:
     while not file_stack.is_empty():
         current_node = file_stack.pop()
 
-        if not path.isdir(current_node.path):
-            continue
-
         try:
             dir_list = scandir(current_node.path)
         except PermissionError:
