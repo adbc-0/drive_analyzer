@@ -1,13 +1,13 @@
-from os import path, listdir, lstat
+from os import path, scandir
 
-from constants import ROOT, READ_LIMIT
+from constants import ROOT
 from .stack import Stack
 from .tree_node import TreeNode
 
 
 def create_dir_tree() -> TreeNode:
     file_stack = Stack[TreeNode]()
-    root_node = TreeNode(ROOT, lstat(ROOT).st_size)
+    root_node = TreeNode(ROOT, path.getsize(ROOT))
 
     file_stack.append(root_node)
 
@@ -18,24 +18,17 @@ def create_dir_tree() -> TreeNode:
             continue
 
         try:
-            dir_list = listdir(current_node.path)
+            dir_list = scandir(current_node.path)
         except PermissionError:
             pass
 
-        if len(dir_list) > READ_LIMIT:
-            continue
+        for file in dir_list:
+            if file.is_symlink():
+                continue
 
-        for file_name in dir_list:
-            absolute_path = f'{current_node.path}/{file_name}'
+            new_node = TreeNode(file.path, file.stat().st_size)
 
-            try:
-                new_node = TreeNode(
-                    absolute_path, lstat(absolute_path).st_size
-                )
-            except PermissionError:
-                pass
-
-            if path.isdir(new_node.path):
+            if file.is_dir():
                 file_stack.append(new_node)
 
             current_node.append_child(new_node)
