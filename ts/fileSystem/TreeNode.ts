@@ -1,14 +1,15 @@
+// Store name, parent, size and type in future?
+
 export class TreeNode {
-  children: TreeNode[] = [];
-  path: string;
-  size: number = 0;
+  #children: TreeNode[] = [];
+  #path: string;
 
   constructor(path: string) {
-    this.path = path;
+    this.#path = path;
   };
 
   appendChild(childNode: TreeNode): void {
-    this.children.push(childNode);
+    this.#children.push(childNode);
   };
 
   deleteNode(): void {
@@ -23,8 +24,8 @@ export class TreeNode {
     throw new Error('not implmented');
   };
 
-  getPath(): string {
-    return this.path;
+  getAbsPath(): string {
+    return this.#path;
   };
 
   printTree(): void {
