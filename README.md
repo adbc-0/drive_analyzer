@@ -1,6 +1,7 @@
 ## Goal: Analyze device drive (Create treemap or other visualization of data found on drive)
 
 Performance optimizations:
+- Use parallel or async features
 - Recursive approach could lead to stack overflow for deeply nested files therefore stack is used
 - Select how much you want limit scanning (lazy evaluation for greyed out sections)
 - Skip scanning system dirs?
@@ -11,3 +12,5 @@ FEATURES:
 - Open in finder
 - Delete files
 - Compress files?
+
+TODO: Handle exceptions
